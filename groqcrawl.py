@@ -103,8 +103,8 @@ if st.button("Run"):
                 st.error(result["error"])
             else:
                 if "markdown" in formats:
-                    st.markdown("### Markdown Content")
-                    st.markdown(result.get("markdown", ""))
+                    st.markdown("### Markdown Content (Raw)")
+                    st.text_area("Raw Markdown", result.get("markdown", ""), height=300)
                 if "html" in formats:
                     st.markdown("### HTML Content")
                     st.code(result.get("html", ""), language="html")
@@ -115,6 +115,30 @@ if st.button("Run"):
                 # Option to download result as JSON
                 json_result = json.dumps(result, indent=4)
                 st.download_button("Download JSON", json_result, "scraped_result.json", "application/json")
+        
+        elif scraping_type == "Crawl (/crawl)":
+            results = crawl_website(url, max_depth, max_pages, formats)
+            st.subheader("Crawl Results:")
+            for i, result in enumerate(results, 1):
+                st.write(f"Page {i}:")
+                if "error" in result:
+                    st.error(result["error"])
+                else:
+                    st.write(f"URL: {result['url']}")
+                    if "markdown" in formats:
+                        st.markdown("#### Markdown Content (Raw)")
+                        st.text_area(f"Raw Markdown (Page {i})", result.get("markdown", ""), height=200)
+                    if "html" in formats:
+                        st.markdown("#### HTML Content")
+                        st.code(result.get("html", ""), language="html")
+                    if "structured_data" in formats:
+                        st.markdown("#### Structured Data")
+                        st.json(result.get("structured_data", {}))
+                st.markdown("---")
+            
+            # Option to download results as JSON
+            json_result = json.dumps(results, indent=4)
+            st.download_button("Download JSON", json_result, "crawl_results.json", "application/json")
         
         elif scraping_type == "Crawl (/crawl)":
             results = crawl_website(url, max_depth, max_pages, formats)
