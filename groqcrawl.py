@@ -1,10 +1,43 @@
 import streamlit as st
+import importlib    
 import json
+import sys
 from pocketgroq import GroqProvider
 from typing import List, Dict, Any
 
 # Initialize GroqProvider
 groq = GroqProvider()
+
+def check_import(module_name):
+    try:
+        importlib.import_module(module_name)
+        return None
+    except ImportError as e:
+        return str(e)
+
+# Check for required modules
+required_modules = ['pocketgroq', 'groq', 'langchain_groq', 'langchain', 'langchain_community']
+import_errors = {module: check_import(module) for module in required_modules}
+
+if any(import_errors.values()):
+    st.error("Some required modules could not be imported:")
+    for module, error in import_errors.items():
+        if error:
+            st.error(f"{module}: {error}")
+    st.error("Please check your installation and requirements.txt file.")
+    st.write("Python version:", sys.version)
+    st.write("Python path:", sys.executable)
+    st.write("sys.path:", sys.path)
+else:
+    # If all modules are present, import GroqProvider
+    from pocketgroq import GroqProvider
+
+    # Initialize GroqProvider
+    try:
+        groq = GroqProvider()
+        st.success("GroqProvider initialized successfully.")
+    except Exception as e:
+        st.error(f"Error initializing GroqProvider: {str(e)}")
 
 def scrape_url(url: str, formats: List[str] = ["markdown", "html"]) -> Dict[str, Any]:
     """
