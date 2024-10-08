@@ -1,5 +1,5 @@
 streamlit==1.32.0
-pocketgroq==0.4.7
+pocketgroq==0.4.8
 bs4>=0.0.2
 groq>=0.8.0
 python-dotenv>=0.19.1
