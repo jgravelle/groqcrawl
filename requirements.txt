@@ -1,0 +1,4 @@
+langchain-community==0.2.1
+markdown2
+pocketgroq
+streamlit
