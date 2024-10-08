@@ -1,5 +1,6 @@
 # GroqCrawl: Advanced Web Crawling and Scraping with Streamlit and PocketGroq
 
+![image](https://github.com/user-attachments/assets/2bf60247-6b93-47c9-aaf4-98b57a241082)
 
 
 ## Table of Contents
