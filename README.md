@@ -17,7 +17,7 @@
 
 ## Introduction
 
-GroqCrawl is a powerful and user-friendly web crawling and scraping application built with Streamlit and powered by PocketGroq. It provides an intuitive interface for extracting content from websites, with support for single-page scraping, multi-page crawling, and site mapping.
+GroqCrawl is a powerful and user-friendly web crawling and scraping application built with Streamlit and powered by PocketGroq. It provides an intuitive interface for extracting LLM friendly AI consumable content from websites, with support for single-page scraping, multi-page crawling, and site mapping.
 
 Whether you're a data scientist, researcher, or web developer, GroqCrawl offers a seamless experience for gathering web data in various formats, including Markdown, HTML, and structured data.
 
